@@ -3,29 +3,19 @@ package sample.Levels;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
-import javafx.beans.property.ReadOnlyBooleanProperty;
-import javafx.beans.property.ReadOnlyDoubleProperty;
-import javafx.beans.property.ReadOnlyObjectProperty;
-import javafx.beans.property.ReadOnlyStringProperty;
-import javafx.concurrent.Task;
-import javafx.concurrent.Worker;
-import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Parent;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.*;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.scene.text.Text;
-import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Scale;
 import javafx.scene.transform.Translate;
 import javafx.util.Duration;
 import sample.Targets.Target;
 import sample.Targets.TargetSecondLevel;
-import sample.Targets.TargetThirdLevel;
 import sample.util.Main;
 import sample.util.Score;
-
-import java.util.Collection;
 
 public class ThirdLevel extends BaseLevel {
 
@@ -37,7 +27,7 @@ public class ThirdLevel extends BaseLevel {
 
     public static Path buildPath ( ) {
         Path path = new Path(new MoveTo(0, 0));
-        int J_MAX = 120;
+        int J_MAX = 180;
         for ( int i = 0 ; i < 1 ; i++ ) {
             for ( int j = 0 ; j < J_MAX ; j++ ) {
                 double x1 = ( i * J_MAX + j ) * Math.cos(( double ) 6 * j);
@@ -50,7 +40,7 @@ public class ThirdLevel extends BaseLevel {
 
         path.setStrokeWidth(2);
         path.getTransforms().addAll(
-                new Translate(WIDTH / 2, HEIGHT / 2),
+                new Translate(WIDTH / 2., HEIGHT / 2.),
                 new Scale(3.3, 3.3)
         );
         return path;
@@ -73,19 +63,19 @@ public class ThirdLevel extends BaseLevel {
         for ( int i = 0 ; i < 5 ; i++ ) {
 
             Target target = new TargetSecondLevel();
-            double duration = getRandomBetween(5,15);
+            double duration = getRandomBetween(10,20);
             PathTransition pathTransition1 = new PathTransition(Duration.seconds(duration), path, target);
             FadeTransition fadeTransition = new FadeTransition(Duration.seconds(duration), target);
             fadeTransition.setFromValue(1.0);
             fadeTransition.setToValue(0);
-            fadeTransition.setInterpolator(Interpolator.EASE_BOTH);
+            fadeTransition.setInterpolator(Interpolator.EASE_IN);
 
             pathTransition1.play();
             fadeTransition.play();
             group.getChildren().add(target);
         }
 
-        group.getChildren().add(path);
+        //group.getChildren().add(path);
         return group;
     }
 
@@ -104,7 +94,6 @@ public class ThirdLevel extends BaseLevel {
 
     @Override
     public Text getLevelSignature ( ) {
-        Text text = new Text("Level Three");
-        return text;
+        return new Text("Level Three");
     }
 }

@@ -19,8 +19,8 @@ import sample.Targets.Target;
 
 public class SecondLevel extends BaseLevel {
 
-    public static boolean track[] = { false, false, false, false };
-    public static final int offset[] = { MAX_CIRCLE_WIDTH, 3 * MAX_CIRCLE_WIDTH, 5 * MAX_CIRCLE_WIDTH, 7 * MAX_CIRCLE_WIDTH };
+    public static boolean[] track = { false, false, false, false };
+    public static final int[] offset = { MAX_CIRCLE_WIDTH, 3 * MAX_CIRCLE_WIDTH, 5 * MAX_CIRCLE_WIDTH, 7 * MAX_CIRCLE_WIDTH };
     private static final int TARGETS = 20;
     private static final int BULLETS = 25;
     private int lastScore;
@@ -38,12 +38,12 @@ public class SecondLevel extends BaseLevel {
 
             if ( Score.getScoreRef ().getTargetsLeft () > 0 ) {
                 for ( int i = 0 ; i < 4 ; i++ ) {
-                    if ( track[i] == true ) {
+                    if ( track[ i ] ) {
                         track[i] = false;
                         Target target = new TargetSecondLevel ();
                         Translate initialTranslate = new Translate (offset[i], 0);
                         Rotate rotate = new Rotate ();
-                        Translate finalTranslate = new Translate (WIDTH / 2, HEIGHT / 2);
+                        Translate finalTranslate = new Translate (WIDTH / 2., HEIGHT / 2.);
                         target.getTransforms ().addAll (
                                 finalTranslate,
                                 rotate,
@@ -87,7 +87,7 @@ public class SecondLevel extends BaseLevel {
                 Translate initialTranslate = new Translate (offset[i], 0);
                 Rotate rotate = new Rotate ();
 
-                Translate finalTranslate = new Translate (WIDTH / 2, HEIGHT / 2);
+                Translate finalTranslate = new Translate (WIDTH / 2., HEIGHT / 2.);
 
                 target.getTransforms ().addAll (
                         finalTranslate,
@@ -139,7 +139,6 @@ public class SecondLevel extends BaseLevel {
 
     @Override
     public Text getLevelSignature ( ) {
-        Text text = new Text("Level Two");
-        return text;
+        return new Text("Level Two");
     }
 }

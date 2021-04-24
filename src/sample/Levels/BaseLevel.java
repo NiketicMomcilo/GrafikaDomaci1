@@ -102,9 +102,8 @@ public abstract class BaseLevel extends Scene {
     private ImageCursor getCustomImageCursor ( ) {
 
         Image image = new Image("/sample/TransparentAim.png", 60, 60, true, true);
-        ImageCursor imageCursor = new ImageCursor(image, 30, 30);
 
-        return imageCursor;
+        return new ImageCursor(image, 30, 30);
     }
 
     protected Group showScoreData ( double width, double height, int numberOfTargets, int numberOfBullets ) {
