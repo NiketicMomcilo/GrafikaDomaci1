@@ -24,11 +24,14 @@ public abstract class BaseLevel extends Scene {
     public static final int KEYBOARD_MOVEMENT_DELTA = 5;
     public static int MAX_CIRCLE_WIDTH = 105;
 
-    abstract Group buildSceneGroup ( );
+    public abstract Group buildSceneGroup ( );
 
-    abstract void goToNextLevel ( );
+    public abstract void goToNextLevel ( );
 
-    abstract void repeatLevel ( );
+    public abstract void repeatLevel ( );
+
+    public abstract Text getLevelSignature();
+
 
     public BaseLevel ( Parent parent, double width, double height, int numberOfTargets, int numberOfBullets ) {
         super(parent, width, height);
@@ -166,6 +169,13 @@ public abstract class BaseLevel extends Scene {
                 new Scale(2, 2)
         );
 
+        Text levelSignature = getLevelSignature();
+
+        levelSignature.getTransforms().addAll(
+                new Translate(WIDTH-levelSignature.getText().length()*14, HEIGHT -10),
+                new Scale( 1.8,1.8)
+        );
+
 
         group.getChildren().addAll(
                 scoreLabel,
@@ -177,7 +187,9 @@ public abstract class BaseLevel extends Scene {
 
                 bulletsLeftLabel,
                 maxBulletsLabel,
-                Score.getScoreRef().bulletsLeftText
+                Score.getScoreRef().bulletsLeftText,
+
+                levelSignature
         );
 
         return group;

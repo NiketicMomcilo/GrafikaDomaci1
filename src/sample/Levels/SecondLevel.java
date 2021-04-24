@@ -7,11 +7,11 @@ import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Scale;
 import javafx.scene.transform.Translate;
 import javafx.util.Duration;
-import sample.Targets.TargetFirstLevel;
 import sample.Targets.TargetSecondLevel;
 import sample.util.Main;
 import sample.util.Score;
@@ -78,7 +78,7 @@ public class SecondLevel extends BaseLevel {
     }
 
     @Override
-    Group buildSceneGroup () {
+    public Group buildSceneGroup ( ) {
         Group root = new Group ();
 
         if ( Score.getScoreRef ().getTargetsLeft () > 0 ) {
@@ -120,14 +120,14 @@ public class SecondLevel extends BaseLevel {
     }
 
     @Override
-    void goToNextLevel () {
+    public void goToNextLevel ( ) {
         ThirdLevel thirdLevel = new ThirdLevel (new Group(), WIDTH, HEIGHT);
         Score.getScoreRef().setTargetsHit(0);
         Main.stage.setScene (thirdLevel);
     }
 
     @Override
-    void repeatLevel () {
+    public void repeatLevel ( ) {
         Score.getScoreRef ().setScore (lastScore);
         Score.getScoreRef().setTargetsHit(0);
         for ( boolean b : track ) {
@@ -135,5 +135,11 @@ public class SecondLevel extends BaseLevel {
         }
         SecondLevel secondLevel = new SecondLevel(new Group(), WIDTH, HEIGHT);
         Main.stage.setScene (secondLevel);
+    }
+
+    @Override
+    public Text getLevelSignature ( ) {
+        Text text = new Text("Level Two");
+        return text;
     }
 }

@@ -6,6 +6,7 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.Parent;
+import javafx.scene.text.Text;
 import javafx.scene.transform.Translate;
 import javafx.util.Duration;
 import sample.Targets.Target;
@@ -86,12 +87,18 @@ public class TestLevel extends BaseLevel {
     }
 
     @Override
-    void goToNextLevel () {
+    public void goToNextLevel ( ) {
 
     }
 
     @Override
-    void repeatLevel () {
+    public void repeatLevel ( ) {
 
+    }
+
+    @Override
+    public Text getLevelSignature ( ) {
+        Text text = new Text("Test");
+        return text;
     }
 }

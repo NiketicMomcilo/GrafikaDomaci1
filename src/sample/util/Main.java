@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import sample.Levels.BaseLevel;
 import sample.Levels.FirstLevel;
 import sample.Levels.SecondLevel;
+import sample.Levels.ThirdLevel;
 
 
 public class Main extends Application {
@@ -17,11 +18,12 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("ZoomaDeluxe");
-        FirstLevel level = new FirstLevel (new Group(), WIDTH, HEIGHT);
-        //SecondLevel secondLevel = new SecondLevel (new Group(), WIDTH, HEIGHT);
+        //FirstLevel level = new FirstLevel (new Group(), WIDTH, HEIGHT);
+
+        ThirdLevel thirdLevel = new ThirdLevel(new Group(), WIDTH, HEIGHT);
 
         stage = primaryStage;
-        primaryStage.setScene(level);
+        primaryStage.setScene(thirdLevel);
         primaryStage.setResizable(false);
         primaryStage.show();
     }

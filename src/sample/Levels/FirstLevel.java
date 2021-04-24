@@ -4,10 +4,10 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.scene.transform.Translate;
 import javafx.util.Duration;
 import sample.Targets.TargetFirstLevel;
@@ -100,7 +100,8 @@ public class FirstLevel extends BaseLevel {
     }
 
     @Override
-    void goToNextLevel () {
+    public void goToNextLevel ( ) {
+
         SecondLevel secondLevel = new SecondLevel (new Group(), WIDTH, HEIGHT);
         Score.getScoreRef().setTargetsHit(0);
         Main.stage.setScene (secondLevel);
@@ -108,7 +109,7 @@ public class FirstLevel extends BaseLevel {
     }
 
     @Override
-    void repeatLevel () {
+    public void repeatLevel ( ) {
         Score.getScoreRef ().setScore (lastScore);
         Score.getScoreRef().setTargetsHit(0);
         for ( boolean b : track ) {
@@ -117,6 +118,12 @@ public class FirstLevel extends BaseLevel {
         FirstLevel firstLevel = new FirstLevel (new Group(), WIDTH, HEIGHT);
         Main.stage.setScene (firstLevel);
 
+    }
+
+    @Override
+    public Text getLevelSignature ( ) {
+        Text text = new Text("Level One");
+        return text;
     }
 
 
