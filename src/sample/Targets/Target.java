@@ -10,7 +10,6 @@ import javafx.scene.text.Text;
 import javafx.scene.transform.Scale;
 import javafx.scene.transform.Translate;
 import javafx.util.Duration;
-import sample.Levels.FirstLevel;
 import sample.util.Score;
 
 import java.util.ArrayList;
@@ -77,7 +76,7 @@ public class Target extends Group {
             }
             this.getChildren ().addAll (text);
         }
-
+        //decrement targetLeft
         Score.getScoreRef ().setTargetsLeft (Score.getScoreRef ().getTargetsLeft () - 1);
         Score.getScoreRef ().targetsLeftText.setText (Integer.toString (Score.getScoreRef ().getTargetsLeft ()));
 
@@ -116,6 +115,7 @@ public class Target extends Group {
                 double y = mouseEvent.getSceneY ();
 
                 //Marking tracks i levels to generate new targets
+
                 MarkTrack (x, y);
             }
             else{//no bullets left

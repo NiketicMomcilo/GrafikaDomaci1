@@ -9,7 +9,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.robot.Robot;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Scale;
 import javafx.scene.transform.Translate;
@@ -30,13 +32,24 @@ public abstract class BaseLevel extends Scene {
 
     public abstract void repeatLevel ( );
 
+    public  Rectangle setBackground( ){
+        Image image = new Image("blue.jpg");
+        ImagePattern imagePattern = new ImagePattern(image, 0,0,1,1,true);
+        Rectangle rectangle = new Rectangle(0,0,WIDTH,HEIGHT);
+        rectangle.setFill(imagePattern);
+        return rectangle;
+    };
+
     public abstract Text getLevelSignature();
 
 
-    public BaseLevel ( Parent parent, double width, double height, int numberOfTargets, int numberOfBullets ) {
+    public BaseLevel ( Parent parent, double width, double height, int numberOfTargets, int numberOfBullets, int backgroundId ) {
         super(parent, width, height);
-        this.setRoot(showScoreData(width, height, numberOfTargets, numberOfBullets));
+
+        this.setRoot(showScoreData(width, height, numberOfTargets, numberOfBullets, backgroundId));
         this.setCursor(getCustomImageCursor());
+
+
 
         Robot robot = new Robot();
         AtomicInteger horizontal = new AtomicInteger();
@@ -99,15 +112,49 @@ public abstract class BaseLevel extends Scene {
 
     }
 
-    private ImageCursor getCustomImageCursor ( ) {
+    public ImageCursor getCustomImageCursor ( ) {
 
         Image image = new Image("/sample/TransparentAim.png", 60, 60, true, true);
 
         return new ImageCursor(image, 30, 30);
     }
 
-    protected Group showScoreData ( double width, double height, int numberOfTargets, int numberOfBullets ) {
+    protected Group showScoreData ( double width, double height, int numberOfTargets, int numberOfBullets , int backgroundId) {
         Group group = new Group();
+        Image image;
+        ImagePattern imagePattern;
+        Rectangle rectangle;
+        switch ( backgroundId ) {
+            case 1:
+                image = new Image("blue.jpg");
+                imagePattern = new ImagePattern(image, 0,0,1,1,true);
+                rectangle = new Rectangle(0,0,WIDTH,HEIGHT);
+                rectangle.setFill(imagePattern);
+                group.getChildren().addAll(rectangle);
+                break;
+            case 2:
+                image = new Image("red.jpg");
+                imagePattern = new ImagePattern(image, 0,0,1,1,true);
+                rectangle = new Rectangle(0,0,WIDTH,HEIGHT);
+                rectangle.setFill(imagePattern);
+                group.getChildren().addAll(rectangle);
+                break;
+            case 3:
+                image = new Image("orange.png");
+                imagePattern = new ImagePattern(image, 0,0,1,1,true);
+                rectangle = new Rectangle(0,0,WIDTH,HEIGHT);
+                rectangle.setFill(imagePattern);
+                group.getChildren().addAll(rectangle);
+                break;
+            case 4:
+                image = new Image("purple.jpg");
+                imagePattern = new ImagePattern(image, 0,0,1,1,true);
+                rectangle = new Rectangle(0,0,WIDTH,HEIGHT);
+                rectangle.setFill(imagePattern);
+                group.getChildren().addAll(rectangle);
+        }
+
+
 
         Score.getScoreRef().scoreText = new Text(Integer.toString(Score.getScoreRef().getScore()));
         Score.getScoreRef().targetsLeftText = new Text(Integer.toString(Score.getScoreRef().getTargetsLeft()));

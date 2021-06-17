@@ -6,6 +6,7 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.Parent;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Translate;
 import javafx.util.Duration;
@@ -14,7 +15,7 @@ import sample.Targets.Target;
 public class TestLevel extends BaseLevel {
 
     public TestLevel (Parent parent, double width, double height, int numOfTargets, int numberOfBullets) {
-        super(parent, width, height, numOfTargets, numberOfBullets);
+        super(parent, width, height, numOfTargets, numberOfBullets,2);
         buildLevel(buildSceneGroup());
     }
 
@@ -94,6 +95,12 @@ public class TestLevel extends BaseLevel {
     @Override
     public void repeatLevel ( ) {
 
+    }
+
+    @Override
+    public Rectangle setBackground ( ) {
+
+        return null;
     }
 
     @Override

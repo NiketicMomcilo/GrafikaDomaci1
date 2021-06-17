@@ -22,6 +22,10 @@ public class Score {
         return targetsHit;
     }
 
+    public static void resetScore(){
+        getScoreRef().setScore(0);
+    }
+
     public void setTargetsHit ( int targetsHit ) {
         this.targetsHit = targetsHit;
     }

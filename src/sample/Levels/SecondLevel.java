@@ -7,6 +7,7 @@ import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Scale;
@@ -26,7 +27,8 @@ public class SecondLevel extends BaseLevel {
     private int lastScore;
 
     public SecondLevel (Parent parent, double width, double height) {
-        super (parent, width, height, TARGETS, BULLETS);
+        super (parent, width, height, TARGETS, BULLETS,2);
+        this.setCursor(getCustomImageCursor());
         for ( boolean b : track ) {
             b = false;
         }
@@ -135,6 +137,12 @@ public class SecondLevel extends BaseLevel {
         }
         SecondLevel secondLevel = new SecondLevel(new Group(), WIDTH, HEIGHT);
         Main.stage.setScene (secondLevel);
+    }
+
+    @Override
+    public Rectangle setBackground ( ) {
+
+        return null;
     }
 
     @Override

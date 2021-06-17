@@ -19,9 +19,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("ZoomaDeluxe");
         FirstLevel level = new FirstLevel (new Group(), WIDTH, HEIGHT);
-
-        //ThirdLevel thirdLevel = new ThirdLevel(new Group(), WIDTH, HEIGHT);
-
         stage = primaryStage;
         primaryStage.setScene(level);
         primaryStage.setResizable(false);
